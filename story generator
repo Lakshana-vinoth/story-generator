@@ -1,0 +1,12 @@
+import streamlit as st
+import google.generativeai as genai
+genai.configure(api_key="")
+model=genai.GenerativeModel("gemini-2.5-flash") 
+st.title("Story Generator")
+prompt=st.text_input("Enter a scene or senario")
+if st.button("submit"):
+    res = model.generate_content(prompt+''' You are a story generator expect give the output in the following manner:
+        1.Simple words
+        2.interesting to user
+        3.provide the story related to the genere''')
+    st.write(res.text)
